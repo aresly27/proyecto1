@@ -13,22 +13,17 @@ def ingresar (request):
         }) 
         
     else:
-        if request.POST['password1'] == request.POST['password2']:
-            try:                
-                user = User.objects.create_user(username=request.POST['username'], 
+        user = authenticate(request, username=request.POST['username'], 
                 password=request.POST['password1'])
-                user.save()
-                login(request, user)
-                return redirect('tasks')
-            except:
-                return render(request, 'registrarusuario.html',{
-                'form': UserCreationForm,
-                'error': 'Usuario ya existe'
-                })
-        return render(request, 'registrarusuario.html',{
-                'form': UserCreationForm,
-                'error': 'Contraseñas no coinciden'
-                })        
+        if user is None:
+            return render(request, 'signin.html',{
+            'form': AuthenticationForm,
+            'error': 'Usuario o contraseña incorrecta'
+            })
+        else:
+            login(request, user)
+            #return redirect('')
+            
         
     return render(request, 'signin.html',{
         'form': AuthenticationForm
