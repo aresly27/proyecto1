@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ashoka Voice</title>
+</head>
+<body>
+    <nav>
+        <ul>
+            {% if user.is_authenticated %}
+            <li>
+                <a href="/logout">Salir</a>
+            </li>
+            {% else%}
+            <li>
+                <a href="/registrarusuario">Registrarse</a>
+            </li>
+            {% endif %}
+        </ul>
+    </nav>
+    <h1>Ashoka Voice</h1>
+
+    {% block content %}
+    {% endblock %}
+    
+</body>
+</html>

@@ -20,6 +20,9 @@ from Registrarusuario import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.hello),
-    path('registrarusuario/', views.hello),
+    path('', views.hello, name='hello'),
+    path('registrarusuario/', views.registrarusuario, name='registrarusuario'),
+    path('tasks/', views.tasks, name='tasks'),
+    path('logout/', views.salir, name='logout'),
+    
 ]
